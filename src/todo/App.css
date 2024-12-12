@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -11,16 +12,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-@import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS:wght@400;700&display=swap');
-
-.btn {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-}
-
-.btn:hover {
-    background: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red);
 }
 
 .App-header {
