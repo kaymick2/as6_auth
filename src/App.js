@@ -1,5 +1,6 @@
 import React from 'react';
 import { Amplify } from 'aws-amplify';
+import {Todo} from './todo/todo';
 
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
@@ -12,6 +13,7 @@ export default function App() {
     <Authenticator>
       {({ signOut, user }) => (
         <main>
+          <Todo/>
           <h1>Hello {user.username}</h1>
           <button style={{background: 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)',
 }} onClick={signOut}>Sign out</button>

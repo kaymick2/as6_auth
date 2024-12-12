@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UpdateModal from './UpdateModal';
 
-const App = () => {
+export function Todo(){
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [listItems, setListItems] = useState([]);
@@ -129,4 +129,3 @@ async function handleUpdate(id,newText) {
   );
 };
 
-export default App;
