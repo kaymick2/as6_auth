@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UpdateModal from './UpdateModal';
 
-export function Todo(){
+export function Todo(props){
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [listItems, setListItems] = useState([]);
@@ -12,7 +12,7 @@ export function Todo(){
 
   async function fetchTheData() {
     try {
-      const response = await fetch(`https://09kjtgt235.execute-api.us-east-2.amazonaws.com/dev/reading?id=dd2436ca-638d-4516-85b2-4de269157347&user=kay`);
+      const response = await fetch(`https://09kjtgt235.execute-api.us-east-2.amazonaws.com/dev/reading?id=dd2436ca-638d-4516-85b2-4de269157347&user=${props.username}`);
       const result = await response.json();
       setListItems(result);
     } catch (error) {
@@ -42,7 +42,7 @@ console.log("isrunning");
     const encodeItem = encodeURIComponent(text);
     setIsLoading(true);
     try {
-      const url = `https://s5j1zlnq76.execute-api.us-east-2.amazonaws.com/test/writing?user=kay&text=${encodeItem}`;
+      const url = `https://s5j1zlnq76.execute-api.us-east-2.amazonaws.com/test/writing?user=${props.username}&text=${encodeItem}`;
       const response = await fetch(url, {
         method: 'GET',
       });
@@ -59,7 +59,7 @@ console.log("isrunning");
   async function deleteItem(id, text) {
     setIsLoading(true);
     try {
-      const response = await fetch(`https://cc9vathen7.execute-api.us-east-2.amazonaws.com/dev/deleting?user=kay&id=${id}`, {
+      const response = await fetch(`https://cc9vathen7.execute-api.us-east-2.amazonaws.com/dev/deleting?user=${props.username}&id=${id}`, {
         mode: 'no-cors',
       });
       if (!response.status === 0) {
@@ -89,7 +89,7 @@ console.log("isrunning");
 async function handleUpdate(id,newText) {
       try {
         const encodeText = encodeURIComponent(newText);
-        const url= await fetch(`https://wk1jgumzl6.execute-api.us-east-2.amazonaws.com/dev/updating?text=${encodeText}&id=${id}&user=kay`, { method: 'GET',mode:"no-cors"});
+        const url= await fetch(`https://wk1jgumzl6.execute-api.us-east-2.amazonaws.com/dev/updating?text=${encodeText}&id=${id}&user=${props.username}`, { method: 'GET',mode:"no-cors"});
         console.log(url.status);
         setIsModalOpen(false);
         await fetchTheData(); // Refetch data immediately after update
@@ -109,6 +109,8 @@ async function handleUpdate(id,newText) {
   return (
     <div>
       <h1>DataSoBased</h1>
+      <h2>userID: ${props.userId}</h2>
+      <h2>username: {props.username}</h2>
       <input type="text" value={inputValue} onChange={handleTextChange} />
       <button onClick={buttonHandler}>ADD STUFF</button>
       {isError && <p>Erroneous state ...</p>}
